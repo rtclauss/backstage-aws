@@ -75,6 +75,7 @@ jobs:
     - run: yarn install --immutable
     - run: yarn tsc
     - run: yarn build:backend
+    - run: yarn build-image
 
     # TODO add docker stuff.
 
@@ -95,12 +96,9 @@ jobs:
         ECR_REPOSITORY: ${{ env.ECR_REPO_NAME }}
         IMAGE_TAG: ${{ github.sha }}
       run: |
-        # Build a docker container and
-        # push it to ECR so that it can
-        # be deployed to ECS.
         docker image build . -f packages/backend/Dockerfile \
           -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG \
           --build-arg GITHUB_SHA="$GITHUB_SHA" \
-          --build-arg GITHUB_REF="$GITHUB_REF" .
+          --build-arg GITHUB_REF="$GITHUB_REF"
         docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
         echo "::set-output name=image::$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG"
