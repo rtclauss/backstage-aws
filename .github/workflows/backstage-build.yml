@@ -44,7 +44,7 @@ env:
   # IMAGE_NAME: account
   
   GITHUB_SHA: ${{ github.sha }}
-  GITOPS_REPO: cjot/backstage-aws
+  ECR_REPO_NAME: cjot/backstage-aws
   GITOPS_DIR: application
   GITOPS_USERNAME: ${{ secrets.GITOPS_USERNAME }}
   GITOPS_TOKEN: ${{ secrets.GITOPS_TOKEN }}
@@ -72,3 +72,25 @@ jobs:
     - run: yarn build:backend
 
     # TODO add docker stuff.
+
+    - name: Login to Amazon ECR
+      id: login-ecr
+      uses: aws-actions/amazon-ecr-login@v2
+      with:
+        registries: ${{ inputs.aws_account_id }}
+
+    - name: Build, tag, and push image to Amazon ECR
+      id: build-image
+      env:
+        ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
+        ECR_REPOSITORY: ${{ env.ECR_REPO_NAME }}
+        IMAGE_TAG: ${{ github.sha }}
+      run: |
+        # Build a docker container and
+        # push it to ECR so that it can
+        # be deployed to ECS.
+        docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG \
+          --build-arg GITHUB_SHA="$GITHUB_SHA" \
+          --build-arg GITHUB_REF="$GITHUB_REF" .
+        docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
+        echo "::set-output name=image::$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG"
