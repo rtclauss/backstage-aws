@@ -49,7 +49,7 @@ env:
   # IMAGE_NAME: account
   
   GITHUB_SHA: ${{ github.sha }}
-  ECR_REPO_NAME: cjot/backstage-aws
+  ECR_REPO_NAME: cjot/backstage
   GITOPS_DIR: application
   GITOPS_USERNAME: ${{ secrets.GITOPS_USERNAME }}
   GITOPS_TOKEN: ${{ secrets.GITOPS_TOKEN }}
