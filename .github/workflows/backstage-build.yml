@@ -36,6 +36,11 @@ on:
   pull_request:
     branches: [ "main" ]
 
+# Required to get OIDC from AWS/GH Handshake
+permissions:
+  id-token: write # This is required for requesting the JWT
+  contents: read    # This is required for actions/checkout
+  
 # Environment variables available to all jobs and steps in this workflow
 env:
   # EDIT secrets with with your registry path, and apikey
@@ -73,11 +78,15 @@ jobs:
 
     # TODO add docker stuff.
 
+    - name: Configure AWS credentials
+      uses: aws-actions/configure-aws-credentials@v4 # More information on this action can be found below in the 'AWS Credentials' section
+      with:
+        role-to-assume: arn:aws:iam::992382412216:role/GHAction_ECR_Build_Push
+        aws-region: us-east-1
+
     - name: Login to Amazon ECR
       id: login-ecr
       uses: aws-actions/amazon-ecr-login@v2
-      with:
-        registries: ${{ inputs.aws_account_id }}
 
     - name: Build, tag, and push image to Amazon ECR
       id: build-image
