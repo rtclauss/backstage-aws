@@ -98,6 +98,7 @@ jobs:
       run: |
         docker image build . -f packages/backend/Dockerfile \
           -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG \
+          -t $ECR_REGISTRY/$ECR_REPOSITORY:latest \
           --build-arg GITHUB_SHA="$GITHUB_SHA" \
           --build-arg GITHUB_REF="$GITHUB_REF"
         docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
