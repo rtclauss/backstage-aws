@@ -35,6 +35,7 @@ backend:
       port: ${POSTGRES_PORT}
       user: ${POSTGRES_USER}
       password: ${POSTGRES_PASSWORD}
+      database: ${POSTGRES_DB}
       pluginDivisionMode: schema # defaults to database, but changing this to schema means plugins will be given their own schema (in the specified/default database)
       # https://node-postgres.com/features/ssl
       # you can set the sslmode configuration option via the `PGSSLMODE` environment variable
