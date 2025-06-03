@@ -25,4 +25,43 @@ spec:
     displayName: Ryan Claussen
     email: rtclauss@kyndryl.com
   memberOf: [guests]
-
+---
+apiVersion: backstage.io/v1alpha1
+kind: User
+metadata:
+  name: herness
+spec:
+  profile:
+    displayName: Eric Herness
+    email: eric.n.herness@kyndryl.com
+  memberOf: [guests]
+---
+apiVersion: backstage.io/v1alpha1
+kind: User
+metadata:
+  name: jwalcorn
+spec:
+  profile:
+    displayName: John Alcorn
+    email: John.Alcorn@kyndryl.com
+  memberOf: [guests]
+---
+apiVersion: backstage.io/v1alpha1
+kind: User
+metadata:
+  name: karricar 
+spec:
+  profile:
+    displayName: Karri Carlson-Neumann
+    email: Karri.Carlson-Neumann@kyndryl.com
+  memberOf: [guests]
+---
+apiVersion: backstage.io/v1alpha1
+kind: User
+metadata:
+  name: anandms101 
+spec:
+  profile:
+    displayName: Anand Mohan Singh
+    email: anand.mohansingh@kyndryl.com
+  memberOf: [guests]
