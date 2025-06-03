@@ -85,12 +85,12 @@ auth:
         clientId: ${GITHUB_CLIENT_ID}
         clientSecret: ${GITHUB_CLIENT_SECRET}
         # callbackUrl: https://backstage.rtclauss.org/api/auth/github/handler/frame
-        signIn:
-          resolvers:
-            - resolver: github-org
-              options:
-                # Only allow users in StockTrader repo. Update if needed
-                organization: IBMStockTrader
+        # signIn:
+        #   resolvers:
+        #     - resolver: github-org
+        #       options:
+        #         # Only allow users in StockTrader repo. Update if needed
+        #         organization: IBMStockTrader
 
 
 scaffolder:
