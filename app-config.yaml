@@ -87,7 +87,7 @@ auth:
         clientSecret: ${GITHUB_CLIENT_SECRET}
         signIn:
           resolvers:
-            - resolver: username
+            - resolver: usernameMatchingUserEntityName
 
         # callbackUrl: https://backstage.rtclauss.org/api/auth/github/handler/frame
         # signIn:
