@@ -81,7 +81,8 @@ auth:
     # See https://backstage.io/docs/auth/guest/provider
     guest: {}
     github:
-      production:
+      # production:
+      development:
         clientId: ${GITHUB_CLIENT_ID}
         clientSecret: ${GITHUB_CLIENT_SECRET}
         # callbackUrl: https://backstage.rtclauss.org/api/auth/github/handler/frame
