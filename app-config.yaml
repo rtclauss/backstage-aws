@@ -52,9 +52,9 @@ integrations:
       # about setting up the GitHub integration here: https://backstage.io/docs/integrations/github/locations#configuration
       token: ${GITHUB_TOKEN}
     ### Example for how to add your GitHub Enterprise instance using the API:
-    # - host: ghe.example.net
-    #   apiBaseUrl: https://ghe.example.net/api/v3
-    #   token: ${GHE_TOKEN}
+    - host: github.kyndryl.net
+      apiBaseUrl: https://github.kyndryl.net/api/v3
+      token: ${GITHUB_ENTERPRISE_TOKEN}
 
 proxy:
   ### Example for how to add a proxy endpoint for the frontend.
