@@ -50,7 +50,7 @@ env:
   
   GITHUB_SHA: ${{ github.sha }}
   IMAGE_NAME: cjot/backstage
-  ACR_NAME: kyncjot
+  ACR_NAME: kyncjot
   GITOPS_DIR: application
 
 jobs:
@@ -85,19 +85,18 @@ jobs:
         tenant-id: ${{ secrets.AZURE_TENANT_ID }}
         subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
         enable-AzPSSession: true
+    
+    - name: Azure ACR Login
+      run: az acr login --name $ACR_NAME
 
-
-    - name: Azure ACR Login
-      run: az acr login --name $ACR_NAME
-
-    - name: Build and Push Docker Image to ACR
-      run: |
-        ACR_LOGIN_SERVER=$(az acr show --name $ACR_NAME --query loginServer --output tsv)
-        docker build . -f packages/backend/Dockerfile \
-          -t $ACR_LOGIN_SERVER/${{ env.IMAGE_NAME }}:${{ env.IMAGE_TAG }} \
-          -t $ACR_LOGIN_SERVER/${{ env.IMAGE_NAME }}:latest \
-          --build-arg GITHUB_SHA="$GITHUB_SHA" \
-          --build-arg GITHUB_REF="$GITHUB_REF"
-        docker push $ACR_LOGIN_SERVER/${{ env.IMAGE_NAME }}:${{ env.IMAGE_TAG }}
-        docker push $ACR_LOGIN_SERVER/${{ env.IMAGE_NAME }}:latest
+    - name: Build and Push Docker Image to ACR
+      run: |
+        ACR_LOGIN_SERVER=$(az acr show --name $ACR_NAME --query loginServer --output tsv)
+        docker build . -f packages/backend/Dockerfile \
+        -t $ACR_LOGIN_SERVER/${{ env.IMAGE_NAME }}:${{ env.IMAGE_TAG }} \
+        -t $ACR_LOGIN_SERVER/${{ env.IMAGE_NAME }}:latest \
+        --build-arg GITHUB_SHA="$GITHUB_SHA" \
+        --build-arg GITHUB_REF="$GITHUB_REF"
+        docker push $ACR_LOGIN_SERVER/${{ env.IMAGE_NAME }}:${{ env.IMAGE_TAG }}
+        docker push $ACR_LOGIN_SERVER/${{ env.IMAGE_NAME }}:latest
 
