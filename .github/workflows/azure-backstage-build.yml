@@ -30,73 +30,85 @@ name: Azure Backstage Build
 
 on:
   push:
-    branches: [ "azure-deploy" ]
-    # paths-ignore:
-    #   - '.github/**'
+    branches: ["azure-deploy"]
   pull_request:
-    branches: [ "azure-deploy" ]
+    branches: ["azure-deploy"]
 
-# Required to get OIDC from AWS/GH Handshake
-permissions:
-  id-token: write # This is required for requesting the JWT
-  contents: read    # This is required for actions/checkout
-  
-# Environment variables available to all jobs and steps in this workflow
 env:
-  # EDIT secrets with with your registry path, and apikey
-  # REGISTRY_NAMESPACE:  ${{ secrets.REGISTRY_NAMESPACE }}
-  # EDIT with your registry username.
-  # IMAGE_NAME: account
-  
   GITHUB_SHA: ${{ github.sha }}
   IMAGE_NAME: cjot/backstage
+  CONTAINER_NAME: backstage
   ACR_NAME: kyncjot
   GITOPS_DIR: application
 
 jobs:
   build:
+    runs-on: ubuntu-latest
 
-    # runs-on: [ self-hosted ]
-    runs-on: [ ubuntu-latest ]
+    permissions:
+      contents: read
+      packages: write
+      id-token: write
 
     strategy:
       matrix:
         node-version: [22.x]
-        # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
-
+        
     steps:
-    - uses: actions/checkout@v4
-    - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v4
-      with:
-        node-version: ${{ matrix.node-version }}
-        cache: 'npm'
-    - run: yarn install --immutable
-    - run: yarn tsc
-    - run: yarn build:backend
-    - run: yarn build-image
+      - uses: actions/checkout@v4
 
-    # TODO add docker stuff.
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: "npm"
 
-    - name: Azure Login
-      uses: azure/login@v1
-      with:
-        client-id: ${{ secrets.AZURE_CLIENT_ID }}
-        tenant-id: ${{ secrets.AZURE_TENANT_ID }}
-        subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
-        enable-AzPSSession: true
-    
-    - name: Azure ACR Login
-      run: az acr login --name $ACR_NAME
+      - run: yarn install --immutable
+      - run: yarn tsc
+      - run: yarn build:backend
+      - run: yarn build-image
 
-    - name: Build and Push Docker Image to ACR
-      run: |
-        ACR_LOGIN_SERVER=$(az acr show --name $ACR_NAME --query loginServer --output tsv)
-        docker build . -f packages/backend/Dockerfile \
-        -t $ACR_LOGIN_SERVER/${{ env.IMAGE_NAME }}:${{ env.IMAGE_TAG }} \
-        -t $ACR_LOGIN_SERVER/${{ env.IMAGE_NAME }}:latest \
-        --build-arg GITHUB_SHA="$GITHUB_SHA" \
-        --build-arg GITHUB_REF="$GITHUB_REF"
-        docker push $ACR_LOGIN_SERVER/${{ env.IMAGE_NAME }}:${{ env.IMAGE_TAG }}
-        docker push $ACR_LOGIN_SERVER/${{ env.IMAGE_NAME }}:latest
+      - name: Log in to GitHub Container Registry
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
 
+      - name: Build and Push Docker Image to GHCR
+        run: |
+          IMAGE_TAG=${{ github.sha }}
+          IMAGE_NAME=ghcr.io/${{ github.repository_owner }}/${{ env.CONTAINER_NAME }}
+
+          docker build . -f packages/backend/Dockerfile \
+            -t $IMAGE_NAME:$IMAGE_TAG \
+            -t $IMAGE_NAME:latest \
+            --build-arg GITHUB_SHA="$GITHUB_SHA" \
+            --build-arg GITHUB_REF="$GITHUB_REF"
+
+          docker push $IMAGE_NAME:$IMAGE_TAG
+          docker push $IMAGE_NAME:latest
+
+  
+      # Disabled until ACR config done.
+      # - name: Azure Login
+      #   uses: azure/login@v1
+      #   with:
+      #     client-id: ${{ secrets.AZURE_CLIENT_ID }}
+      #     tenant-id: ${{ secrets.AZURE_TENANT_ID }}
+      #     subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+      #     enable-AzPSSession: true
+      
+      # - name: Azure ACR Login
+      #   run: az acr login --name $ACR_NAME
+  
+      # - name: Build and Push Docker Image to ACR
+      #   run: |
+      #     ACR_LOGIN_SERVER=$(az acr show --name $ACR_NAME --query loginServer --output tsv)
+      #     docker build . -f packages/backend/Dockerfile \
+      #     -t $ACR_LOGIN_SERVER/${{ env.IMAGE_NAME }}:${{ env.IMAGE_TAG }} \
+      #     -t $ACR_LOGIN_SERVER/${{ env.IMAGE_NAME }}:latest \
+      #     --build-arg GITHUB_SHA="$GITHUB_SHA" \
+      #     --build-arg GITHUB_REF="$GITHUB_REF"
+      #     docker push $ACR_LOGIN_SERVER/${{ env.IMAGE_NAME }}:${{ env.IMAGE_TAG }}
+      #     docker push $ACR_LOGIN_SERVER/${{ env.IMAGE_NAME }}:latest
