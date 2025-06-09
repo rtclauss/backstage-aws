@@ -106,9 +106,9 @@ jobs:
         run: |
           ACR_LOGIN_SERVER=$(az acr show --name $ACR_NAME --query loginServer --output tsv)
           docker build . -f packages/backend/Dockerfile \
-          -t $ACR_LOGIN_SERVER/${{ env.IMAGE_NAME }}:${{ env.IMAGE_TAG }} \
+          -t $ACR_LOGIN_SERVER/${{ env.IMAGE_NAME }}:$IMAGE_TAG \
           -t $ACR_LOGIN_SERVER/${{ env.IMAGE_NAME }}:latest \
           --build-arg GITHUB_SHA="$GITHUB_SHA" \
           --build-arg GITHUB_REF="$GITHUB_REF"
-          docker push $ACR_LOGIN_SERVER/${{ env.IMAGE_NAME }}:${{ env.IMAGE_TAG }}
-      #     docker push $ACR_LOGIN_SERVER/${{ env.IMAGE_NAME }}:latest
+          docker push $ACR_LOGIN_SERVER/${{ env.IMAGE_NAME }}:latest
+          docker push $ACR_LOGIN_SERVER/${{ env.IMAGE_NAME }}:$IMAGE_TAG
