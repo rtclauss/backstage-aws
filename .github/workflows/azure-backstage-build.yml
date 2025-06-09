@@ -104,6 +104,7 @@ jobs:
   
       - name: Build and Push Docker Image to ACR
         run: |
+          IMAGE_TAG=${{ github.sha }}
           ACR_LOGIN_SERVER=$(az acr show --name $ACR_NAME --query loginServer --output tsv)
           docker build . -f packages/backend/Dockerfile \
           -t $ACR_LOGIN_SERVER/${{ env.IMAGE_NAME }}:$IMAGE_TAG \
