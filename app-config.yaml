@@ -54,9 +54,9 @@ integrations:
       # about setting up the GitHub integration here: https://backstage.io/docs/integrations/github/locations#configuration
       token: ${GITHUB_TOKEN}
     ### Example for how to add your GitHub Enterprise instance using the API:
-    - host: github.kyndryl.net
-      apiBaseUrl: https://github.kyndryl.net/api/v3
-      token: ${GITHUB_ENTERPRISE_TOKEN}
+    # - host: github.kyndryl.net
+    #   apiBaseUrl: https://github.kyndryl.net/api/v3
+    #   token: ${GITHUB_ENTERPRISE_TOKEN}
 
 proxy:
   ### Example for how to add a proxy endpoint for the frontend.
@@ -139,7 +139,7 @@ catalog:
   # New adopters are encouraged to enable it as this behavior will be the default in a future release.
   useUrlReadersSearch: true
 
-kubernetes:
+# kubernetes:
   # see https://backstage.io/docs/features/kubernetes/configuration for kubernetes configuration options
 
 # see https://backstage.io/docs/permissions/getting-started for more on the permission framework
