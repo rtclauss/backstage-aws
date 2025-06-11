@@ -23,7 +23,7 @@ metadata:
 spec:
   profile:
     displayName: Ryan Claussen
-    email: rtclauss@kyndryl.com
+    email: ryan.claussen@kyndryl.com
   memberOf: [guests]
 ---
 apiVersion: backstage.io/v1alpha1
