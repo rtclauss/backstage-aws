@@ -104,6 +104,15 @@ scaffolder:
   # see https://backstage.io/docs/features/software-templates/configuration for software template options
 
 catalog:
+  providers:
+    githubOrg:
+      id: production
+      githubUrl: https://github.com
+      orgs: ['IBMStockTrader']
+      schedule:
+        initialDelay: { seconds: 30 }
+        frequency: { hours: 1 }
+        timeout: { minutes: 50 }
   import:
     entityFilename: catalog-info.yaml
     pullRequestBranchName: backstage-integration
