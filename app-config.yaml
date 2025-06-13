@@ -96,8 +96,7 @@ auth:
         signIn:
           resolvers:
             - resolver: usernameMatchingUserEntityName
-
-        # callbackUrl: https://backstage.rtclauss.org/api/auth/github/handler/frame
+        callbackUrl: https://backstage.rtclauss.org/api/auth/github/handler/frame
         # signIn:
         #   resolvers:
         #     - resolver: github-org
