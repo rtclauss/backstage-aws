@@ -111,6 +111,20 @@ scaffolder:
 
 catalog:
   providers:
+    github:
+      stocktraderProvider:
+        organization: 'IBMStockTrader' # string
+        catalogPath: '/catalog-info.yaml' # string
+        filters:
+          branch: 'main' # string
+          repository: '.*' # Regex
+        schedule: # same options as in SchedulerServiceTaskScheduleDefinition
+          # supports cron, ISO duration, "human duration" as used in code
+          frequency: { minutes: 30 }
+          # supports ISO duration, "human duration" as used in code
+          timeout: { minutes: 3 }
+    # This imports organization info?
+    # https://backstage.io/docs/integrations/github/org
     githubOrg:
       id: production
       githubUrl: https://github.com

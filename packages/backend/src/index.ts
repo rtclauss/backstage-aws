@@ -57,4 +57,7 @@ backend.add(import('@backstage/plugin-kubernetes-backend'));
 // GitHub Organization
 backend.add(import('@backstage/plugin-catalog-backend-module-github-org'));
 
+// GitHub Discovery
+backend.add(import('@backstage/plugin-catalog-backend-module-github'));
+
 backend.start();
