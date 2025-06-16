@@ -115,7 +115,7 @@ catalog:
         organization: 'IBMStockTrader' # string
         catalogPath: '/catalog-info.yaml' # string
         filters:
-          branch: 'main' # string
+          branch: 'master' # string
           repository: '.*' # Regex
         schedule: # same options as in SchedulerServiceTaskScheduleDefinition
           # supports cron, ISO duration, "human duration" as used in code
