@@ -68,7 +68,6 @@ import { EntityTeamPullRequestsContent } from '@backstage-community/plugin-githu
 
 // Add GitHub Issues Page
 import {
-  GithubIssuesCard,
   GithubIssuesPage,
 } from '@backstage-community/plugin-github-issues';
 
