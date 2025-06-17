@@ -162,7 +162,7 @@ const serviceEntityPage = (
       {overviewContent}
     </EntityLayout.Route>
 
-    <EntityLayout.Route path="github-issues" title="GitHub Issues">
+    <EntityLayout.Route path="/github-issues" title="GitHub Issues">
       <GithubIssuesPage />
     </EntityLayout.Route>
 
@@ -347,6 +347,9 @@ const groupPage = (
           <EntityLinksCard />
         </Grid>
       </Grid>
+    </EntityLayout.Route>
+    <EntityLayout.Route path="/pull-requests" title="Pull Requests">
+        <EntityTeamPullRequestsContent />
     </EntityLayout.Route>
   </EntityLayout>
 );
