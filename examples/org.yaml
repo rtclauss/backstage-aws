@@ -20,6 +20,8 @@ apiVersion: backstage.io/v1alpha1
 kind: User
 metadata:
   name: rtclauss
+  annotations:
+    github.com/user-login: rtclauss
 spec:
   profile:
     displayName: Ryan Claussen
@@ -30,6 +32,8 @@ apiVersion: backstage.io/v1alpha1
 kind: User
 metadata:
   name: enherness
+  annotations:
+    github.com/user-login: enherness
 spec:
   profile:
     displayName: Eric Herness
@@ -40,6 +44,8 @@ apiVersion: backstage.io/v1alpha1
 kind: User
 metadata:
   name: jwalcorn
+  annotations:
+    github.com/user-login: jwalcorn
 spec:
   profile:
     displayName: John Alcorn
@@ -49,7 +55,9 @@ spec:
 apiVersion: backstage.io/v1alpha1
 kind: User
 metadata:
-  name: karricar 
+  name: karricar
+  annotations:
+    github.com/user-login: karricar
 spec:
   profile:
     displayName: Karri Carlson-Neumann
@@ -59,7 +67,9 @@ spec:
 apiVersion: backstage.io/v1alpha1
 kind: User
 metadata:
-  name: anandms101 
+  name: anandms101
+  annotations:
+    github.com/user-login: anandms101
 spec:
   profile:
     displayName: Anand Mohan Singh
