@@ -63,6 +63,9 @@ import {
   isGithubActionsAvailable,
 } from '@backstage-community/plugin-github-actions';
 
+// Add GitHub PR Page
+import { EntityTeamPullRequestsContent } from '@backstage-community/plugin-github-pull-requests-board';
+
 const techdocsContent = (
   <EntityTechdocsContent>
     <TechDocsAddons>
@@ -331,6 +334,9 @@ const groupPage = (
           <EntityLinksCard />
         </Grid>
       </Grid>
+    </EntityLayout.Route>
+    <EntityLayout.Route path="/pull-requests" title="Pull Requests">
+        <EntityTeamPullRequestsContent />
     </EntityLayout.Route>
   </EntityLayout>
 );

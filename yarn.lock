@@ -2765,6 +2765,32 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@backstage-community/plugin-github-pull-requests-board@npm:^0.6.0":
+  version: 0.6.0
+  resolution: "@backstage-community/plugin-github-pull-requests-board@npm:0.6.0"
+  dependencies:
+    "@backstage/catalog-model": "npm:^1.7.4"
+    "@backstage/core-compat-api": "npm:^0.4.2"
+    "@backstage/core-components": "npm:^0.17.2"
+    "@backstage/core-plugin-api": "npm:^1.10.7"
+    "@backstage/frontend-plugin-api": "npm:^0.10.2"
+    "@backstage/integration": "npm:^1.17.0"
+    "@backstage/plugin-catalog-react": "npm:^1.18.0"
+    "@material-ui/core": "npm:^4.12.2"
+    "@material-ui/icons": "npm:^4.9.1"
+    "@material-ui/lab": "npm:4.0.0-alpha.61"
+    "@octokit/rest": "npm:^19.0.3"
+    "@types/react": "npm:^16.13.1 || ^17.0.0 || ^18.0.0"
+    luxon: "npm:^3.0.0"
+    p-limit: "npm:^3.1.0"
+  peerDependencies:
+    react: ^16.13.1 || ^17.0.0 || ^18.0.0
+    react-dom: ^16.13.1 || ^17.0.0 || ^18.0.0
+    react-router-dom: 6.0.0-beta.0 || ^6.3.0
+  checksum: 10c0/34dc061c8c9123b9ce82dfa7338cb9af87d1819a42c8acba406877fc08c13b4b4a0185d49df6878035e18b54562a2071035d65bff5998e42678462d0e218832d
+  languageName: node
+  linkType: hard
+
 "@backstage/app-defaults@npm:^1.6.2":
   version: 1.6.2
   resolution: "@backstage/app-defaults@npm:1.6.2"
@@ -13619,6 +13645,7 @@ __metadata:
   resolution: "app@workspace:packages/app"
   dependencies:
     "@backstage-community/plugin-github-actions": "npm:^0.11.1"
+    "@backstage-community/plugin-github-pull-requests-board": "npm:^0.6.0"
     "@backstage/app-defaults": "npm:^1.6.2"
     "@backstage/canon": "npm:^0.4.0"
     "@backstage/catalog-model": "npm:^1.7.4"
