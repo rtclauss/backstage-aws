@@ -66,6 +66,12 @@ import {
 // Add GitHub PR Page
 import { EntityTeamPullRequestsContent } from '@backstage-community/plugin-github-pull-requests-board';
 
+// Add GitHub Issues Page
+import {
+  GithubIssuesCard,
+  GithubIssuesPage,
+} from '@backstage-community/plugin-github-issues';
+
 const techdocsContent = (
   <EntityTechdocsContent>
     <TechDocsAddons>
@@ -155,6 +161,14 @@ const serviceEntityPage = (
   <EntityLayout>
     <EntityLayout.Route path="/" title="Overview">
       {overviewContent}
+    </EntityLayout.Route>
+
+    <EntityLayout.Route path="github-issues" title="GitHub Issues">
+      <GithubIssuesPage />
+    </EntityLayout.Route>
+
+    <EntityLayout.Route path="/pull-requests" title="Pull Requests">
+      <EntityTeamPullRequestsContent />
     </EntityLayout.Route>
 
     <EntityLayout.Route path="/ci-cd" title="CI/CD">
@@ -334,9 +348,6 @@ const groupPage = (
           <EntityLinksCard />
         </Grid>
       </Grid>
-    </EntityLayout.Route>
-    <EntityLayout.Route path="/pull-requests" title="Pull Requests">
-        <EntityTeamPullRequestsContent />
     </EntityLayout.Route>
   </EntityLayout>
 );
