@@ -89,8 +89,8 @@ auth:
     # See https://backstage.io/docs/auth/guest/provider
     guest: {}
     github:
-      production:
-      # development:
+      # production:
+      development:
         clientId: ${AUTH_GITHUB_CJOT_CLIENT_ID}
         clientSecret: ${AUTH_GITHUB_CJOT_CLIENT_SECRET}
         signIn:
