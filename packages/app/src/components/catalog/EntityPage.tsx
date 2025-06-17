@@ -166,10 +166,6 @@ const serviceEntityPage = (
       <GithubIssuesPage />
     </EntityLayout.Route>
 
-    <EntityLayout.Route path="/pull-requests" title="Pull Requests">
-      <EntityTeamPullRequestsContent />
-    </EntityLayout.Route>
-
     <EntityLayout.Route path="/ci-cd" title="CI/CD">
       {cicdContent}
     </EntityLayout.Route>
@@ -349,6 +345,7 @@ const groupPage = (
       </Grid>
     </EntityLayout.Route>
     <EntityLayout.Route path="/pull-requests" title="Pull Requests">
+    {/* only applicable to a group page  */}
         <EntityTeamPullRequestsContent />
     </EntityLayout.Route>
   </EntityLayout>
