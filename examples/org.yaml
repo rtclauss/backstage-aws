@@ -67,9 +67,9 @@ spec:
 apiVersion: backstage.io/v1alpha1
 kind: User
 metadata:
-  name: anandms101
+  name: anandDev77
   annotations:
-    github.com/user-login: anandms101
+    github.com/user-login: anandDev77
 spec:
   profile:
     displayName: Anand Mohan Singh
