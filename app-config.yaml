@@ -111,12 +111,18 @@ scaffolder:
 catalog:
   providers:
     github:
+      templateProvider:
+        organization: 'IBMStockTrader' # string
+        catalogPath: '/**/template.yaml' # string
+        filters:
+          branch: 'main' # string
+          repository: 'SoftwareTemplates' # Regex
       stocktraderProvider:
         organization: 'IBMStockTrader' # string
         catalogPath: '/catalog-info.yaml' # string
         filters:
-          branch: 'master' # string
-          repository: '.*' # Regex
+          # branch: 'master' # string
+          repository: '^(?!.*SoftwareTemplates).*$' # Regex
         schedule: # same options as in SchedulerServiceTaskScheduleDefinition
           # supports cron, ISO duration, "human duration" as used in code
           frequency: { minutes: 30 }
@@ -138,6 +144,11 @@ catalog:
   rules:
     - allow: [Component, System, API, Resource, Location]
   locations:
+      Our CJOT Template
+    - type: url
+      target: https://github.com/IBMStockTrader/SoftwareTemplates/blob/main/quarkus-couchdb-jms/template.yaml
+
+
     # Local example data, file locations are relative to the backend process, typically `packages/backend`
     - type: file
       target: ./examples/entities.yaml
