@@ -144,11 +144,6 @@ catalog:
   rules:
     - allow: [Component, System, API, Resource, Location]
   locations:
-      Our CJOT Template
-    - type: url
-      target: https://github.com/IBMStockTrader/SoftwareTemplates/blob/main/quarkus-couchdb-jms/template.yaml
-
-
     # Local example data, file locations are relative to the backend process, typically `packages/backend`
     - type: file
       target: ./examples/entities.yaml
