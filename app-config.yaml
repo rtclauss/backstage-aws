@@ -128,7 +128,7 @@ catalog:
           frequency: { minutes: 30 }
           # supports ISO duration, "human duration" as used in code
           timeout: { minutes: 3 }
-    # This imports organization info?
+    # This imports organization info
     # https://backstage.io/docs/integrations/github/org
     githubOrg:
       id: production

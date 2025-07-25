@@ -1,17 +1,17 @@
----
-# https://backstage.io/docs/features/software-catalog/descriptor-format#kind-user
-apiVersion: backstage.io/v1alpha1
-kind: User
-metadata:
-  name: guest
-spec:
-  memberOf: [guests]
+# ---
+# # https://backstage.io/docs/features/software-catalog/descriptor-format#kind-user
+# apiVersion: backstage.io/v1alpha1
+# kind: User
+# metadata:
+#   name: guest
+# spec:
+#   memberOf: [cjot]
 ---
 # https://backstage.io/docs/features/software-catalog/descriptor-format#kind-group
 apiVersion: backstage.io/v1alpha1
 kind: Group
 metadata:
-  name: guests
+  name: cjot
 spec:
   type: team
   children: []
@@ -26,7 +26,7 @@ spec:
   profile:
     displayName: Ryan Claussen
     email: ryan.claussen@kyndryl.com
-  memberOf: [guests]
+  memberOf: [cjot]
 ---
 apiVersion: backstage.io/v1alpha1
 kind: User
@@ -38,7 +38,7 @@ spec:
   profile:
     displayName: Eric Herness
     email: eric.n.herness@kyndryl.com
-  memberOf: [guests]
+  memberOf: [cjot]
 ---
 apiVersion: backstage.io/v1alpha1
 kind: User
@@ -50,7 +50,7 @@ spec:
   profile:
     displayName: John Alcorn
     email: John.Alcorn@kyndryl.com
-  memberOf: [guests]
+  memberOf: [cjot]
 ---
 apiVersion: backstage.io/v1alpha1
 kind: User
@@ -62,7 +62,7 @@ spec:
   profile:
     displayName: Karri Carlson-Neumann
     email: Karri.Carlson-Neumann@kyndryl.com
-  memberOf: [guests]
+  memberOf: [cjot]
 ---
 apiVersion: backstage.io/v1alpha1
 kind: User
@@ -74,4 +74,4 @@ spec:
   profile:
     displayName: Anand Mohan Singh
     email: anand.mohansingh@kyndryl.com
-  memberOf: [guests]
+  memberOf: [cjot]
